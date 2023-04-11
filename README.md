@@ -1,6 +1,8 @@
 # group_03_project
 
+## Member
 
+Kaiyang Chen (kc68@illinois.edu)
 
 ## Getting started
 
