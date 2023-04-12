@@ -2,6 +2,7 @@
 
 ## Member
 
+Birkhoff Cheng (zhiqic2@illinois.edu)
 Kaiyang Chen (kc68@illinois.edu)
 
 ## Getting started
