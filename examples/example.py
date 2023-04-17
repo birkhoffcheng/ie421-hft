@@ -6,9 +6,8 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 
 
-def python_excution():
+def python_execution():
     return None
-
 
 
 default_args = {
