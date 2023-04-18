@@ -58,7 +58,7 @@ t2 = BashOperator(
 
 t3 = PythonOperator(
     task_id='python_excyre',
-    python_callable=python_excution,
+    python_callable=python_execution,
     dag=dag)
 
 
