@@ -7,4 +7,5 @@
 
 ## 17/04/2023
 - Run tutorial code on localhost
+- Search and read information about of how to build data pipelines in Apache Airflow
 
