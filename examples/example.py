@@ -5,11 +5,6 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 
-
-def python_execution():
-    return None
-
-
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -34,33 +29,23 @@ default_args = {
     # 'trigger_rule': u'all_success'
 }
 
-
 dag = DAG(
-    'example',
+    'Download and Parse IEX PCAPs',
     default_args=default_args,
-    description='A simple example DAG',
+    description='Download and Parse IEX PCAP files',
     schedule_interval=timedelta(days=1),
 )
 
 t1 = BashOperator(
-    task_id='print_date',
-    bash_command='date',
+    task_id='download pcap files of the day',
+    bash_command='python3 /usr/local/iexdownloaderparser/src/download_iex_pcaps.py --start-date $(date +%Y-%m-%d) --end-date $(date +%Y-%m-%d) --download-dir /usr/local/iexdownloaderparser/data',
     dag=dag,
 )
-
 
 t2 = BashOperator(
-    task_id='sleep',
-    depends_on_past=False,
-    bash_command='sleep 5',
+    task_id='parse pcap files of the day',
+    bash_command='gunzip -d -c /usr/local/iexdownloaderparser/data/*$(date +%Y%m%d)*DEEP*.gz | tcpdump -r - -w - -s 0 | python3 /usr/local/iexdownloaderparser/src/parse_iex_pcaps.py /dev/stdin --symbols ALL --trade-date $(date +%Y%m%d) --output-deep-books-too',
     dag=dag,
 )
 
-t3 = PythonOperator(
-    task_id='python_excyre',
-    python_callable=python_execution,
-    dag=dag)
-
-
-
-[t1, t2] >> t3
+t1 >> t2
