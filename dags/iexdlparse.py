@@ -38,13 +38,13 @@ dag = DAG(
 
 t1 = BashOperator(
     task_id='download-pcap-files-of-the-day',
-    bash_command='python3 /usr/local/iexdownloaderparser/src/download_iex_pcaps.py --start-date $(date +%Y-%m-%d) --end-date $(date +%Y-%m-%d) --download-dir /usr/local/iexdownloaderparser/data',
+    bash_command='python3 /usr/local/iexdownloaderparser/src/download_iex_pcaps.py --start-date $(date +%Y-%m-%d) --end-date $(date +%Y-%m-%d) --download-dir /usr/local/iexdownloaderparser/data/iex_downloads',
     dag=dag,
 )
 
 t2 = BashOperator(
     task_id='parse-pcap-files-of-the-day',
-    bash_command='gunzip -d -c /usr/local/iexdownloaderparser/data/*$(date +%Y%m%d)*DEEP*.gz | tcpdump -r - -w - -s 0 | python3 /usr/local/iexdownloaderparser/src/parse_iex_pcaps.py /dev/stdin --symbols ALL --trade-date $(date +%Y%m%d) --output-deep-books-too',
+    bash_command='gunzip -d -c /usr/local/iexdownloaderparser/data/iex_downloads/DEEP/*$(date +%Y%m%d)*.gz | tcpdump -r - -w - -s 0 | python3 /usr/local/iexdownloaderparser/src/parse_iex_pcaps.py /dev/stdin --symbols ALL --trade-date $(date +%Y%m%d) --output-deep-books-too',
     dag=dag,
 )
 
