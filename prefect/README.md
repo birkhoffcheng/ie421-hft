@@ -61,7 +61,8 @@ First, when you try to run some experiment, maybe you need to change the `access
 You can make a workflow to a deployment via the prefect deploy CLI command:
 
 ```
-$ prefect deploy ./example.py:api_flow \
+# Run this command under the project root
+$ prefect deploy ./prefect/example.py:api_flow \
     -n my-first-deployment \
     -p WORK_POOL_NAME
 ```
