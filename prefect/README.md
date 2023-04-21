@@ -56,6 +56,8 @@ In this case, Prefect automatically created a new my-queue work queue.
 By default, the agent polls the API specified by the PREFECT_API_URL environment variable. 
 
 #### Deploying a workflow
+First, when you try to run some experiment, maybe you need to change the `access_token` part (with your own personal access token) in `prefect.yaml` part in order for the Prefect agent to clone the repo successfully to their local fs.
+
 You can make a workflow to a deployment via the prefect deploy CLI command:
 
 ```
