@@ -1,0 +1,18 @@
+hello_world_script:
+  class: File
+  path: scripts/hello_world.sh
+duplicator_script:
+  class: File
+  path: scripts/duplicate_file.sh
+make_caps_script:
+  class: File
+  path: scripts/make_caps.sh
+names:
+  - Jamie
+  - Jameson
+numbers:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
