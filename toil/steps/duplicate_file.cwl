@@ -6,8 +6,8 @@ baseCommand: sh
 # There's absolutely no reason to pull this Docker image aside from
 # testing that such a step works
 hints:
-  DockerRequirement:
-    dockerPull: node:slim
+  VagrantRequirement:
+    vmImage: "generic/fedora35"
 
 inputs:
   script_file:
