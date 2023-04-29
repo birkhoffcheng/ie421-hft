@@ -75,10 +75,7 @@ Vagrant.configure("2") do |config|
   #
   #Use the same basic config and base box for all the VMs
 
-  config.vm.box = "centos7_mini"
-  config.vm.box_url = "https://davidl.web.engr.illinois.edu/vms/centos7_mini.box"
-  config.vm.box_download_checksum = "4897db055b26323d6d8d4a3f14b9c7d5a5e770e5d4c0185c0d2915c832719a1f"
-  config.vm.box_download_checksum_type = "sha256"
+  config.vm.box = "ubuntu/bionic64"
   config.ssh.insert_key = false
 
 
@@ -87,7 +84,7 @@ Vagrant.configure("2") do |config|
     master.vm.hostname = "master"
     
     master.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "256"]
+      vb.customize ["modifyvm", :id, "--memory", "512"]
       vb.customize ["modifyvm", :id, "--cpus", "1"]
     end
     master.vm.synced_folder "workflow/", "/workflow"
@@ -101,7 +98,7 @@ Vagrant.configure("2") do |config|
     worker1.vm.hostname = "worker1"
     
     worker1.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "256"]
+      vb.customize ["modifyvm", :id, "--memory", "512"]
       vb.customize ["modifyvm", :id, "--cpus", "1"]
     end
     worker1.vm.synced_folder "data/", "/vagrant_data"
