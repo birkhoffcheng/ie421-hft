@@ -1,18 +1,9 @@
-hello_world_script:
+download_data_script:
   class: File
-  path: scripts/hello_world.sh
-duplicator_script:
+  path: scripts/download_data.sh
+parse_data_script:
   class: File
-  path: scripts/duplicate_file.sh
-make_caps_script:
+  path: scripts/parse_data.sh
+start_file:
   class: File
-  path: scripts/make_caps.sh
-names:
-  - Jamie
-  - Jameson
-numbers:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
+  path: data/startpipe.txt
