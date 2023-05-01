@@ -3,20 +3,21 @@
 cwlVersion: v1.0
 class: Workflow
 
+requirements:
+  - class: SubworkflowFeatureRequirement
+
 inputs:
-  start_file: File
+  download_data_script:
+    type: File
 
 outputs:
-  parse_data_output:
+  output:
     type: File
-    outputSource: datapipe/parse_data/parse_data_output_file
+    outputSource: sub_download_data/download_file
 
 steps:
-  datapipe:
+  sub_download_data:
     run: submain.cwl
     in:
-      download_data_script_file: File
-      parse_data_script_file: File
-      start_file: start_file
-    out:
-      [download_data_output_file, parse_data_output_file]
+      download_data_script_file: download_data_script
+    out: download_file

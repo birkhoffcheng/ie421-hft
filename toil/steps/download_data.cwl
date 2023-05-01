@@ -1,21 +1,17 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 
-baseCommand: [python3, src/download_data.py]
+baseCommand: [python3]
 
-inputs:
-  input_file:
+inputs: 
+  download_data_script: 
     type: File
-    doc: The input text file
+    inputBinding:
+      prefix: -u
 
 outputs:
-  output_file:
+  download_file:
     type: File
     outputBinding:
-      glob: ../data/output.txt
-
-requirements:
-  InlineJavascriptRequirement: {}
-  ShellCommandRequirement: {}
-  stdin: true
-  stdout: true
+      glob: tmp.txt
