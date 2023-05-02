@@ -17,4 +17,4 @@
   airflow and the set up of the networking between the VMs)
 
 ## 02/05/2023
--  Working on the vagrantfile and bash scripts to setup the distributed system with apache-airflow installed.
+-  Working on the vagrantfile and bash scripts to setup the distributed system with apache-airflow installed
