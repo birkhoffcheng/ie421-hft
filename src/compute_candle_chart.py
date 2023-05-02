@@ -8,7 +8,7 @@ CLOSE = 1
 HIGH = 2
 LOW = 3
 
-def compute_open_close_high_low(input_file, output_file):
+def compute_candle_chart(input_file, output_file):
 	stocks = {}
 	with open(input_file, 'r') as f:
 		reader = csv.reader(f)
@@ -36,4 +36,4 @@ parser.add_argument('-f', '--file', dest='file', help='Input file name', require
 parser.add_argument('-o', '--output', dest='output', help='Output file name', required=True)
 args = parser.parse_args()
 
-compute_open_close_high_low(args.file, args.output)
+compute_candle_chart(args.file, args.output)
