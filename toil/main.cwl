@@ -3,21 +3,18 @@
 cwlVersion: v1.0
 class: Workflow
 
-requirements:
-  - class: SubworkflowFeatureRequirement
-
 inputs:
   download_data_script:
     type: File
 
-outputs:
-  output:
-    type: File
-    outputSource: sub_download_data/download_file
-
 steps:
-  sub_download_data:
-    run: submain.cwl
+  download:
+    run: steps/download_data.cwl
     in:
       download_data_script_file: download_data_script
-    out: download_file
+    out: [download_file]
+
+outputs: 
+  download_file:
+    type: File
+    outputSource: download/download_file

@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: [python3]
 
 inputs: 
-  download_data_script: 
+  download_data_script_file: 
     type: File
     inputBinding:
       prefix: -u
