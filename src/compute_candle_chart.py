@@ -32,8 +32,8 @@ def compute_candle_chart(input_file, output_file):
 			writer.writerow([symbol] + stocks[symbol])
 
 parser = argparse.ArgumentParser(description='Compute open, close, high, low of each symbol')
-parser.add_argument('-f', '--file', dest='file', help='Input file name', required=True)
+parser.add_argument('-i', '--input', dest='input', help='Input file name', required=True)
 parser.add_argument('-o', '--output', dest='output', help='Output file name', required=True)
 args = parser.parse_args()
 
-compute_candle_chart(args.file, args.output)
+compute_candle_chart(args.input, args.output)

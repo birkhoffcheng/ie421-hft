@@ -48,4 +48,10 @@ t2 = BashOperator(
     dag=dag,
 )
 
-t1 >> t2
+t3 = BashOperator(
+    task_id='compute-candle-chart-data',
+    bash_command='zcat /vagrant/iexdownloaderparser/data/book_snapshots/$(date +%Y%m%d)_trades.csv.gz | python3 /vagrant/src/compute_candle_chart.py -i /dev/stdin -o /vagrant/$(date +%Y%m%d)_candle_chart.csv',
+    dag=dag,
+)
+
+t1 >> t2 >> t3
