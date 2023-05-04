@@ -74,8 +74,6 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--cpus", "1"]
     end
     master.vm.synced_folder "dags", "/root/airflow/dags"
-    master.vm.synced_folder "iexdownloaderparser", "/iexdownloaderparser"
-    master.vm.synced_folder "src", "/src"
     master.vm.network "private_network", ip: "192.168.0.101", virtualbox__intnet: "tcp_network", nic_type: "virtio"
     master.vm.network "forwarded_port", guest: 8080, host: 8080
     master.vm.provision "shell", path: "init_master.sh"
