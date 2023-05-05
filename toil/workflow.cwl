@@ -3,15 +3,28 @@
 cwlVersion: v1.0
 class: Workflow
 
+requirements:
+  ResourceRequirement:
+    outdirMin: 6
+      
 inputs:
   download_data_script:
     type: File
+  start_date:
+    type: string
+  end_date:
+    type: string
+  download_dir:
+    type: string
 
 steps:
   download:
-    run: steps/download_data.cwl
+    run: steps/download.cwl
     in:
       download_data_script_file: download_data_script
+      start_date: start_date
+      end_date: end_date
+      download_dir: download_dir
     out: [download_file]
 
 outputs: 
