@@ -14,5 +14,5 @@ sudo rm /usr/bin/python
 sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 sudo pip install --upgrade pip
 sudo pip install -U prefect
-sudo prefect server start
+sudo prefect server start &
 sudo prefect work-pool create hft-pool
