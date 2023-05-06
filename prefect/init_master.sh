@@ -9,10 +9,12 @@ sudo make altinstall
 sudo apt-get -y install build-essential vim git python3-pip gcc
 cd ..
 sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo cp /workflow/prefect.yaml /home/vagrant
+sudo cp -r /workflow/.prefect /home/vagrant
 sudo python3.9 get-pip.py
 sudo rm /usr/bin/python
 sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 sudo pip install --upgrade pip
 sudo pip install -U prefect
 sudo prefect server start &
-sudo prefect work-pool create hft-pool
+sudo prefect work-pool create --type process hft-workpool
