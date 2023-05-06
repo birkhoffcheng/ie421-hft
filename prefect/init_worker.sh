@@ -14,4 +14,5 @@ sudo rm /usr/bin/python
 sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 sudo pip install --upgrade pip
 sudo pip install -U prefect
+sudo pip install tqdm pytz requests
 sudo prefect config set PREFECT_API_URL=http://192.168.50.101:4200/api
