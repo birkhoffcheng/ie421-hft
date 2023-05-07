@@ -1,3 +1,21 @@
+choose a path with enough volume for your vagrant to avoid memory issue
+```
+VBoxManage setproperty machinefolder </new/path>
+```
+
+one should configure ssh capability amoung different vm in order to initiate a dask cluster. The procedure is
+```
+# On worker node
+sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+ssh-keygen
+
+# On master node
+# copy all public key of worker node (/home/vagrant/.ssh/id_rsa.pub) to master's /home/vagrant/.ssh/authorized_keys
+ssh-copy-id VM_IP_1
+ssh-copy-id VM_IP_2
+...
+dask-ssh VM_IP_1, VM_IP_2, ...
+```
 # Prefect
 
 ## Getting Started
