@@ -17,5 +17,6 @@ sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 sudo pip install --upgrade pip
 sudo pip install -U prefect
 sudo python -m pip install dask distributed --upgrade
+sudo pip install prefect_dask
 sudo prefect server start &
 sudo prefect work-pool create --type process hft-workpool
