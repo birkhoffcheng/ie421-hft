@@ -1,3 +1,4 @@
 #!/bin/bash
 
-toil-cwl-runner --workDir `pwd` workflow.cwl config.yml
+source ~/venv/bin/activate
+toil-cwl-runner --defaultDisk 5G --workDir `pwd` workflow.cwl config.yml

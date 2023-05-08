@@ -3,6 +3,11 @@ class: CommandLineTool
 
 baseCommand: python3
 
+requirements:
+  ResourceRequirement:
+    tmpdirMin: 5
+    outdirMin: 5
+
 inputs:
   download_data_script_file:
     type: File
@@ -32,4 +37,4 @@ outputs:
   download_file:
     type: File
     outputBinding:
-      glob: data_feeds*.gz
+      glob: '*.gz'

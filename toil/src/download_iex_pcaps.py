@@ -23,9 +23,7 @@ class IexMarketDataFile(object):
         self.feed_version = float(feed_version)
         self.protocol = protocol
         self.size = int(size)
-        
         self.filename = unquote(self.url.split('/')[-1].split('?')[0]).replace('/', '_')
-        # print(self.filename)
         pass
     
     def __str__(self):
@@ -101,29 +99,26 @@ class IexFileDownloader(object):
             #base_download_path = "../../downloads"
             #base_download_path = "/run/media/jdoe/My Passport/market_data/IEX"
             #download_path = "%s/%s/%s" % (base_download_path, iex_file.feed_type, iex_file.filename)
-            # zoe
-            download_path = base_download_path
-            
+            download_path = "%s/%s" % (base_download_path,iex_file.filename)
             # print("Downloading %s to %s" % (iex_file.url, download_path))
             IexFileDownloader.download_file(iex_file.url, download_path, iex_file.size)
             
     @staticmethod
     def download_file(file_url, local_path, expected_file_size):
-        # zoe
-        # if path.exists(local_path):
-        #     local_file_size = os.path.getsize(local_path)
-        #     if local_file_size == expected_file_size:
-        #         print("%s already exists and is fully downloaded; skipping download" % (local_path))
-        #         # raise Exception("Invalid filesize %d vs expected %d" % (local_file_size, expected_file_size))
-        #         return 
+        if path.exists(local_path):
+            local_file_size = os.path.getsize(local_path)
+            if local_file_size == expected_file_size:
+                print("%s already exists and is fully downloaded; skipping download" % (local_path))
+                # raise Exception("Invalid filesize %d vs expected %d" % (local_file_size, expected_file_size))
+                return 
         
         print("%s doesnt already exist or isnt fully downloaded! downloading... " % (local_path))
         #return
         r = requests.get(file_url, stream=True, allow_redirects=True)
         total_size = int(r.headers.get('content-length'))
         initial_pos = 0
-        # with open(local_path,'wb') as f: 
-        with open('DEEP','wb') as f: 
+        print(f'local path: {local_path}')
+        with open(local_path,'wb') as f: 
             with tqdm(total=total_size, unit='B', 
                        unit_scale=True,desc=local_path,initial=initial_pos, ascii=True) as pbar:
               for ch in r.iter_content(chunk_size=1024):                             
@@ -131,7 +126,7 @@ class IexFileDownloader(object):
                       f.write(ch) 
                       pbar.update(len(ch))
                       
-        local_file_size = os.path.getsize('DEEP')
+        local_file_size = os.path.getsize(local_path)
         print("Downloaded file size is %d vs expected %s" % (local_file_size, expected_file_size))
 
 
@@ -198,9 +193,7 @@ if __name__ == "__main__":
         raise Exception("invalid arguments; second parameter should be --end-date <END_DATE>")
     
     if sys.argv[5] == "--download-dir":
-        # download_dir = sys.argv[6]
-        # zoe
-        download_dir = ''
+        download_dir = sys.argv[6]
         #TODO: add date string validation, ensure in format of YYYY-MM-DD
     else:
         raise Exception("invalid arguments (%s); third parameter should be --download-dir <DOWNLOAD_DIR>" % (sys.argv[5]))
