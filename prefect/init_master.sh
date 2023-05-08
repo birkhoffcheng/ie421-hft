@@ -18,5 +18,5 @@ sudo pip install --upgrade pip
 sudo pip install -U prefect
 sudo python -m pip install dask distributed --upgrade
 sudo pip install prefect_dask
-sudo prefect server start &
+sudo prefect server start --host 192.168.50.101 &
 sudo prefect work-pool create --type process hft-workpool

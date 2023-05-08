@@ -30,8 +30,8 @@ def copy_file(source_filename, target_filename):
       description="An example flow for a tutorial.",
       task_runner=DaskTaskRunner(address="tcp://192.168.50.101:8786"))
 def api_flow(date: datetime.datetime):
-    write_values.submit(date,'/data/test1')
-    copy_file.submit('/data/test1', '/data/test2')
+    write_values.submit(date,'/vagrant_data/test1')
+    copy_file.submit('/vagrant_data/test1', '/vagrant_data/test2')
 
 
 api_flow(date=datetime.datetime.utcnow())
