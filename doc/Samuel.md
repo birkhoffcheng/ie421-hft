@@ -16,5 +16,9 @@
   (I have been able to understand the basics of the enviornemnt, currently I am working in set up the shell scripts to install apache
   airflow and the set up of the networking between the VMs)
 
-## 02/05/2023
+## 02/05/2023, 03/05/2023, 04/05/2023 & 05/05/2023
 -  Working on the vagrantfile and bash scripts to setup the distributed system with apache-airflow installed
+
+## 06/05/2023, 07/05/2023
+-  Read documentation and development of the DAG 
+
