@@ -17,3 +17,4 @@ sudo pip install -U prefect
 sudo python -m pip install dask distributed --upgrade
 sudo pip install tqdm pytz requests
 sudo prefect config set PREFECT_API_URL=http://192.168.50.101:4200/api
+sudo pip install prefect_dask
