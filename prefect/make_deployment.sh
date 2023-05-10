@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/bash 
+vagrant ssh master -c "tmux new-session -s prefect-sever -d 'sudo prefect server start --host 192.168.50.101'"
+vagrant ssh master -c "tmux new-session -s prefect-sever1 -d 'sudo prefect work-pool create --type process hft-workpool'"
 vagrant ssh master -c "tmux new-session -s dask-scheduler -d 'sudo dask-scheduler --host 192.168.50.101'"
 vagrant ssh worker1 -c "tmux new-session -s dask-worker -d 'sudo dask-worker tcp://192.168.50.101:8786'"
 vagrant ssh worker2 -c "tmux new-session -s dask-worker -d 'sudo dask-worker tcp://192.168.50.101:8786'"
