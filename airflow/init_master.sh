@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Syu --noconfirm python-pip python-pytz python-tqdm python-requests tmux
+pacman -Syu --noconfirm python-pip python-tqdm python-requests tmux
 
 AIRFLOW_VERSION=2.6.0
 PYTHON_VERSION="$(python --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2)"
