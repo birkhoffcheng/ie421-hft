@@ -1,9 +1,21 @@
+# ETL Workflow with Prefect
+
+## Prerequisites
+
+You only need to do below steps if your system do not meet the requirements
+
+#### Make sure you have enough volume for your vms
+
 choose a path with enough volume for your vagrant to avoid memory issue
+
 ```
 VBoxManage setproperty machinefolder </new/path>
 ```
 
+#### Make sure you enable ssh between your vms
+
 one should configure ssh capability amoung different vm in order to initiate a dask cluster. The procedure is
+
 ```
 # On worker node
 sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -14,8 +26,21 @@ ssh-keygen
 ssh-copy-id VM_IP_1
 ssh-copy-id VM_IP_2
 ...
-dask-ssh VM_IP_1, VM_IP_2, ...
+
 ```
+## To start
+
+1. Clone our repo
+2. `vagrant up`
+3. `bash make_deployments.sh`. This step is to initialize the prefect pipeline with dask cluster, you only need to do it once.
+4. `vagrant ssh -c master "sudo python workflow/deploy.py"`
+
+
+
+
+
+
+
 # Prefect
 
 ## Getting Started
