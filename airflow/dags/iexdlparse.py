@@ -30,27 +30,30 @@ default_args = {
 }
 
 dag = DAG(
-    'download-and-parse-iex-pcaps',
+    dag_id='download-and-parse-iex-pcaps',
     default_args=default_args,
     description='Download and Parse IEX PCAP files',
-    schedule_interval=timedelta(days=1),
+    schedule="0 23 * * 1-5",
+    start_date=pendulum.datetime(2023, 1, 1, tz="UTC"),
+    catchup=False,
+    dagrun_timeout=datetime.timedelta(minutes=60)
 )
 
 t1 = BashOperator(
     task_id='download-pcap-files-of-the-day',
-    bash_command='python3 /vagrant/iexdownloaderparser/src/download_iex_pcaps.py --start-date $(date +%Y-%m-%d) --end-date $(date +%Y-%m-%d) --download-dir /vagrant/iexdownloaderparser/data/iex_downloads',
+    bash_command='python3 /vagrant/src/download_iex_pcaps.py --start-date $(date +%Y-%m-%d) --end-date $(date +%Y-%m-%d) --download-dir /vagrant/data/iex_downloads',
     dag=dag,
 )
 
 t2 = BashOperator(
     task_id='parse-pcap-files-of-the-day',
-    bash_command='zcat /vagrant/iexdownloaderparser/data/iex_downloads/DEEP/*$(date +%Y%m%d)*.gz | tcpdump -r - -w - -s 0 | python3 /vagrant/iexdownloaderparser/src/parse_iex_pcaps.py /dev/stdin --symbols SPY --trade-date $(date +%Y%m%d) --output-deep-books-too',
+    bash_command='zcat /vagrant/data/iex_downloads/DEEP/*$(date +%Y%m%d)*.gz | tcpdump -r - -w - -s 0 | python3 /vagrant/src/parse_iex_pcaps.py /dev/stdin --symbols SPY --trade-date $(date +%Y%m%d) --output-deep-books-too',
     dag=dag,
 )
 
 t3 = BashOperator(
     task_id='compute-candle-chart-data',
-    bash_command='zcat /vagrant/iexdownloaderparser/data/book_snapshots/$(date +%Y%m%d)_trades.csv.gz | python3 /vagrant/src/compute_candle_chart.py -i /dev/stdin -o /vagrant/$(date +%Y%m%d)_candle_chart.csv',
+    bash_command='zcat /vagrant/data/book_snapshots/$(date +%Y%m%d)_trades.csv.gz | python3 /vagrant/src/compute_candle_chart.py -i /dev/stdin -o /vagrant/$(date +%Y%m%d)_candle_chart.csv',
     dag=dag,
 )
 
