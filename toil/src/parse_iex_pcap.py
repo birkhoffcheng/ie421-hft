@@ -548,7 +548,8 @@ class BasicPcapParser():
         
         #TODO: make this a command line arg
         #filename_string = "../data/output/%s" % (filename_string)
-        filename_string = "data/text_tick_data/%s" % (filename_string)
+        # filename_string = "data/text_tick_data/%s" % (filename_string)
+        filename_string = "%s" % (filename_string)
         
         #if we haven't already created a tick file for this symbol on this day, do so and store in hash
         if filename_string not in self.trades_per_symbol_output_file_hash:
@@ -620,8 +621,10 @@ if __name__ == "__main__":
         if sys.argv[6] != "--output-deep-books-too":
             raise Exception("Invalid argument: %s" % (sys.argv[6]))
         else:
-            trades_output_file_name = "data/book_snapshots/%s_trades.csv" % (trade_date)
-            book_updates_output_file_name = "data/book_snapshots/%s_book_updates.csv" % (trade_date)
+            # trades_output_file_name = "data/book_snapshots/%s_trades.csv" % (trade_date)
+            # book_updates_output_file_name = "data/book_snapshots/%s_book_updates.csv" % (trade_date)
+            trades_output_file_name = "%s_trades.csv" % (trade_date)
+            book_updates_output_file_name = "%s_book_updates.csv" % (trade_date)
             # timestamp_output_filename = "data/book_snapshots/%s_message_timestamps.csv"% (trade_date)
             timestamp_output_filename = None #disable this for now as the files are HUGE
     else:

@@ -1,11 +1,10 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-baseCommand: python3
+baseCommand: [sudo,python]
 
 requirements:
   ResourceRequirement:
-    tmpdirMin: 5
     outdirMin: 5
 
 inputs:
@@ -37,4 +36,4 @@ outputs:
   download_file:
     type: File
     outputBinding:
-      glob: '*.gz'
+      glob: 'data_feeds_*.gz'

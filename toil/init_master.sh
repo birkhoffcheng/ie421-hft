@@ -13,7 +13,10 @@ sudo python3.9 get-pip.py
 sudo rm /usr/bin/python
 sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 sudo pip install --upgrade pip
-sudo pip install virtualenv
-virtualenv ~/venv
-source ~/venv/bin/activate
-pip install toil[all]
+sudo python -m pip install virtualenv tqdm requests pytz
+sudo snap install pypy3 --classic
+sudo pypy3 -m ensurepip
+sudo pypy3 -m pip install pytz
+sudo virtualenv ~/venv
+sudo . ~/venv/bin/activate
+sudo pip install toil[all]

@@ -2,8 +2,16 @@ download_data_script:
   class: File
   path: src/download_iex_pcaps.py
 
-start_date: 2022-08-01
+parse_data_script:
+  class: File
+  path: parse_all.sh
 
-end_date: 2022-08-01
+start_date: 2023-05-09
+
+end_date: 2023-05-09
 
 download_dir: .
+
+parse_iex_pcap_script:
+  class: File
+  path: src/parse_iex_pcap.py
