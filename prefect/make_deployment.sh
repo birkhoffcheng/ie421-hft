@@ -1,4 +1,5 @@
 #!/bin/bash 
+mkdir data
 mkdir data/DEEP
 mkdir data/book_snapshots
 mkdir data/text_tick_data
