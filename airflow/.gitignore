@@ -1,0 +1,3 @@
+data/iex_downloads/DEEP/*.pcap*
+data/text_tick_data/tick_*.txt*
+data/book_snapshots/*.csv*
