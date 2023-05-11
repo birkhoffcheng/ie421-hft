@@ -605,7 +605,7 @@ if __name__ == "__main__":
             raise Exception("Invalid argument: %s" % (sys.argv[2]))
         stocks_to_output = sys.argv[3]
     
-        if stocks_to_output is "ALL":
+        if stocks_to_output == "ALL":
             stocks_to_output = None
     
     # stocks_to_output = "SPY"
