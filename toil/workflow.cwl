@@ -16,6 +16,10 @@ inputs:
     type: string
   parse_iex_pcap_script:
     type: File
+  stat_data_script:
+    type: File
+  candle_chart_script:
+    type: File
 
 steps:
   download:
@@ -31,9 +35,18 @@ steps:
     run: steps/parse.cwl
     in: 
       parse_data_script_file: parse_data_script
-      download_zip: download_file
+      download_zip: download/download_file
       parse_iex_pcap_script_file: parse_iex_pcap_script
     out: [book_snapshot1,book_snapshot2,text_tick_data]
+  
+  stat:
+    run: steps/stat.cwl
+    in:
+      stat_data_script_file: stat_data_script
+      candle_chart_script_file: candle_chart_script
+      book_snapshot2_file: parse/book_snapshot2
+    out: [csv_file]
+      
 
 outputs: 
   download_file:
@@ -48,3 +61,7 @@ outputs:
   text_tick_data:
     type: File
     outputSource: parse/text_tick_data
+  csv_file:
+    type: File
+    outputSource: stat/csv_file
+    

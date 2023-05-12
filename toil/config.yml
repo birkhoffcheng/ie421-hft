@@ -6,12 +6,21 @@ parse_data_script:
   class: File
   path: parse_all.sh
 
-start_date: 2023-05-09
-
-end_date: 2023-05-09
-
-download_dir: .
-
 parse_iex_pcap_script:
   class: File
   path: src/parse_iex_pcap.py
+
+stat_data_script:
+  class: File
+  path: cal_stat.sh
+
+candle_chart_script:
+  class: File
+  path: src/compute_candle_chart.py
+
+
+start_date: 2023-05-11
+
+end_date: 2023-05-11
+
+download_dir: .
