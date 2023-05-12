@@ -2,7 +2,7 @@
 
 ## Member
 
-Birkhoff Cheng (zhiqic2@illinois.edu)
+Birkhoff Cheng (zhiqic2@illinois.edu): Responsible for building analysis software and setup using Apache Airflow framework
 
 Kaiyang Chen (kc68@illinois.edu): Responsible for distributed workflow setup using Prefect framework
 
