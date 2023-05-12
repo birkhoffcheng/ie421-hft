@@ -36,7 +36,7 @@ ssh-copy-id VM_IP_2
 4. `vagrant ssh -c master "sudo python workflow/deploy.py"`. You can simply change the deployment to run by changing the deployment name in `deploy.py` file.
 
 
-## Notificatino
+## Notification
 The above mentioned workflow is designed as a tutorial, demonstrating the parallelization of two workflows that handle data download, data parsing, and stats computation on different dates. It is worth noting that modifying the workflow scripts to enable daily computation and incorporate more complex workflows is a straightforward process, as I have demonstrated by showcasing the combination of sequential and parallel execution.
 
 
