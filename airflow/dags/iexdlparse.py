@@ -47,7 +47,7 @@ t1 = BashOperator(
 
 t2 = BashOperator(
     task_id='parse-pcap-files-of-the-day',
-    bash_command='cd /vagrant; zcat /vagrant/data/iex_downloads/DEEP/*$(date +%Y%m%d)*.gz | tcpdump -r - -w - -s 0 | python3 /vagrant/src/parse_iex_pcaps.py /dev/stdin --symbols SPY --trade-date $(date +%Y%m%d) --output-deep-books-too',
+    bash_command='cd /vagrant; zcat /vagrant/data/iex_downloads/DEEP/*$(date +%Y%m%d)*.gz | tcpdump -r - -w - -s 0 | python3 /vagrant/src/parse_iex_pcap.py /dev/stdin --symbols SPY --trade-date $(date +%Y%m%d) --output-deep-books-too',
     dag=dag,
 )
 
