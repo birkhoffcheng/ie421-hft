@@ -1,11 +1,27 @@
 #!/bin/bash
 
-pacman -Syu --noconfirm python-pip python-tqdm python-requests tmux tcpdump
+pacman -Syu --noconfirm python-pip python-amqp tmux rabbitmq postgresql
 
-AIRFLOW_VERSION=2.6.0
-PYTHON_VERSION="$(python --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2)"
-CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
-pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+systemctl start rabbitmq
+systemctl enable rabbitmq
+su postgres -c 'initdb -D /var/lib/postgres/data'
+systemctl start postgresql
+systemctl enable postgresql
+
+su postgres << EOF
+psql
+CREATE DATABASE airflow_db;
+CREATE USER airflow_user WITH PASSWORD 'airflow_pass';
+GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
+\c airflow_db postgres
+GRANT ALL ON SCHEMA public TO airflow_user;
+COMMIT;
+EOF
+
+pip install apache-airflow[celery]
+
+mkdir -p ~/airflow
+cp /vagrant/airflow/master.cfg ~/airflow/airflow.cfg
 
 airflow db init
 airflow users create -u admin -p admin -f Airflow -l Administrator -r Admin -e airflow@example.com
