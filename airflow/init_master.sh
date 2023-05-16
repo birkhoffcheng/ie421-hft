@@ -4,11 +4,12 @@ pacman -Syu --noconfirm python-pip python-tqdm python-requests python-amqp tmux 
 
 systemctl start rabbitmq.service
 systemctl enable rabbitmq.service
-su postgres -c 'initdb -D /var/lib/postgres/data'
+su postgres -c 'cd && initdb -D /var/lib/postgres/data'
 systemctl start postgresql.service
 systemctl enable postgresql.service
 
 su postgres << EOF
+cd
 psql
 CREATE DATABASE airflow_db;
 CREATE USER airflow_user WITH PASSWORD 'airflow_pass';
