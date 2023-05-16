@@ -11,8 +11,5 @@ build: null
 push: null
 
 # pull section allows you to provide instructions for cloning this project in remote locations
-pull: 
-- prefect.projects.steps.git_clone_project:
-    repository: https://gitlab.engr.illinois.edu/ie421_high_frequency_trading_spring_2023/ie421_hft_spring_2023_group_03/group_03_project.git
-    branch: dev_prefect
-    access_token: glpat-JFbzSQ7xyS6hDRbc5Ao5
+pull: null
+
