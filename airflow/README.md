@@ -17,7 +17,7 @@ cd group_03_project/airflow
 vagrant up
 ```
 
-Browse to [localhost:8080](http://localhost:8080) and use the WebUI to trigger the `download-and-parse-iex-pcaps` DAG. And the resulting data csv will be stored in the current directory.
+Browse to [localhost:8080](http://localhost:8080) and use the WebUI to trigger the `download-and-parse-iex-pcaps` DAG. The login username is `admin` and password is `admin` as well. And the resulting data csv will be stored in the current directory.
 
 ## Example
 
