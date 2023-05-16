@@ -14,15 +14,15 @@ psql
 CREATE DATABASE airflow_db;
 CREATE USER airflow_user WITH PASSWORD 'airflow_pass';
 GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
-\c airflow_db postgres
+\c airflow_db postgres;
 GRANT ALL ON SCHEMA public TO airflow_user;
-COMMIT;
+COMMIT
 EOF
 
 pip install apache-airflow[celery]
 
 airflow version
-cp /vagrant/airflow/master.cfg ~/airflow/airflow.cfg
+cp /vagrant/master.cfg ~/airflow/airflow.cfg
 
 airflow db init
 airflow users create -u admin -p admin -f Airflow -l Administrator -r Admin -e airflow@example.com
