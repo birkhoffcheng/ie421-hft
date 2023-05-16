@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Syu --noconfirm python-pip python-tqdm python-requests python-amqp tmux rabbitmq postgresql
+pacman -Syu --noconfirm python-pip python-tqdm python-requests python-amqp python-psycopg2 tmux rabbitmq postgresql
 
 systemctl start rabbitmq.service
 systemctl enable rabbitmq.service
@@ -21,7 +21,6 @@ EOF
 
 pip install apache-airflow[celery]
 
-airflow version
 cp /vagrant/master.cfg ~/airflow/airflow.cfg
 
 airflow db init
